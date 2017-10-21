@@ -1,0 +1,9 @@
+{% if grocery_list %}
+ <ul>   
+     {% for item in grocery_list %}
+     <li>{{ item.name }}</li>
+     {% endfor %}
+ </ul>
+ {% else %}
+    <p>No needed items.</p>
+ {% endif %}
