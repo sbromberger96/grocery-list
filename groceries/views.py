@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template import Context
 from django.template.loader import get_template
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 
 from .models import Item
@@ -14,13 +14,13 @@ def items(request):
 
 def new(request):
     if request.method == 'POST':
-        form = ItemForm
+        form = ItemForm(request.POST)
         if form.is_valid():
             item = form.save(commit=False)
             item.save()
-        else:
-            form = ItemForm()
-
-    return render(request, 'items/new.html', 
-        {'form': form,}
-    )
+            return HttpResponseRedirect('/items/')
+    else:
+        form = ItemForm()
+        return render(request, 'items/new.html', 
+            {'form': form,}
+        )
