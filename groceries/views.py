@@ -13,18 +13,14 @@ def items(request):
     return render(request, 'items/index.html', context)
 
 def new(request):
-    form_class = ItemForm
-
     if request.method == 'POST':
-        form = form_class(data=request.POST)
-
+        form = ItemForm
         if form.is_valid():
-            item_name = request.POST.get('item_name', '')
-
-            template = get_template('items/new.html')
-            context = {'item_name': item_name}
-            content = template.render(context)
+            item = form.save(commit=False)
+            item.save()
+        else:
+            form = ItemForm()
 
     return render(request, 'items/new.html', 
-        {'form': form_class,}
+        {'form': form,}
     )

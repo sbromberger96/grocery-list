@@ -1,10 +1,9 @@
 from django import forms
+from django.forms import ModelForm
 
 from .models import Item
 
-class ItemForm(forms.Form):
-    item_name = forms.CharField(required=True)
-
+class ItemForm(ModelForm):
     class Meta:
         model = Item
         fields = ('name',)
