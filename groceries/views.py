@@ -9,11 +9,6 @@ from django.views.generic.list import ListView
 from .models import Item
 from groceries.forms import ItemForm
 
-def items(request):
-    grocery_list = Item.objects.order_by('name')
-    context = {'grocery_list': grocery_list}
-    return render(request, 'items/index.html', context)
-
 def new(request):
     if request.method == 'POST':
         form = ItemForm(request.POST)
