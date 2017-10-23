@@ -1,0 +1,11 @@
+{% if items %}
+ <h1>Time to go shopping!</h1>
+ <h3><a href='/items/new/'>Add Items</a></h3>
+ <ul>   
+     {% for item in items %}
+        <li><a href='/items/{{ item.slug }}'>{{ item.name }}</a></li>
+     {% endfor %}
+ </ul>
+ {% else %}
+    <p>No needed items.</p>
+ {% endif %}

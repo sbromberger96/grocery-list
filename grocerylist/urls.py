@@ -20,5 +20,7 @@ from groceries import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index, name='index'),
+    url(r'^items/$', views.ItemListView.as_view(), name='items'),
+    url(r'^items/new/', views.new, name='new-item'),
+    url(r'^items/(?P<slug>.+)/$', views.ItemDetailView.as_view(), name='item-detail')
 ]
