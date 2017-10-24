@@ -4,6 +4,7 @@
  - View current grocery list
  - Add new groceries
  - Delete groceries in django admin
+ - See Issues for additional future plans
  
  
 ## Roadmap
